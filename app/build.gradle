@@ -32,8 +32,8 @@ android {
         generateStubs = true
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 
     dexOptions {
