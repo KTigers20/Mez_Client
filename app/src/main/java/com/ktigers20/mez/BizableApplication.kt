@@ -1,6 +1,7 @@
 package com.ktigers20.mez
 
 import android.app.Application
+import com.ktigers20.mez.domain.koin.modules.sharedPrefModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -12,7 +13,7 @@ class BizableApplication: Application() {
         startKoin {
             androidLogger()
             androidContext(this@BizableApplication)
-            modules(mutableListOf())
+            modules(mutableListOf(sharedPrefModule))
         }
     }
 }
