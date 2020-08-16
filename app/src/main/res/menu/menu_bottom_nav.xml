@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bottom_tab_main"
+        android:title="@string/nav_main"
+        android:icon="@drawable/common_google_signin_btn_icon_dark_normal"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/bottom_tab_search"
+        android:title="@string/nav_search"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/bottom_tab_phonebook"
+        android:title="@string/nav_phonebook"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/bottom_tab_settings"
+        android:title="@string/nav_settings"
+        app:showAsAction="ifRoom"/>
+</menu>
