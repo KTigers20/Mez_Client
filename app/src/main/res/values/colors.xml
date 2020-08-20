@@ -45,6 +45,7 @@
     <color name="colorActive">#0091EA</color>
 
 
+    <!-- KB colors -->
     <color name="kbYellow">#F2BF41</color>
     <color name="kbLogo">#796D61</color>
     <color name="kbTextColor">#1F1F20</color>
