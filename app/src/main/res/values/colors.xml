@@ -50,4 +50,7 @@
     <color name="kbTextColor">#1F1F20</color>
     <color name="kbDeactivate">#B6B6B6</color>
     <color name="kbLine">#DDDDDD</color>
+    <color name="kbRed">#EB5757</color>
+    <color name="kbGreen">#6FCF97</color>
+    <color name="kbWaiting">#C2C7CF</color>
 </resources>
