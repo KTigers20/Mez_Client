@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Mez</string>
+    <string name="app_name">Biz-able</string>
+    <string name="nav_main">메인</string>
+    <string name="nav_search">조회</string>
+    <string name="nav_phonebook">비상연락망</string>
+    <string name="nav_settings">설정</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
