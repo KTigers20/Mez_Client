@@ -5,6 +5,7 @@ import com.ktigers20.mez.domain.koin.repositoryImpl.SharedPrefRepositoryImpl
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
+
 val sharedPrefModule = module {
     single<SharedPrefRepository> { SharedPrefRepositoryImpl(androidApplication()) }
 }
