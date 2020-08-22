@@ -2,6 +2,7 @@ package com.ktigers20.mez.domain.koin.repository
 
 import rx.Observable
 
+
 interface SharedPrefRepository {
     fun writePrefs(key: String?)
 

@@ -11,6 +11,7 @@ import java.util.Locale;
 
 import rx.Observable;
 
+
 public class SharedPreferenceHelper {
     private volatile static SharedPreferenceHelper instance = null;
     private SharedPreferences mPrefs;
