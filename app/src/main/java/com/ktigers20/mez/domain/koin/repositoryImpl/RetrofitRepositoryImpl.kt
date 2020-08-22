@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RefreshRetrofitRepositoryImpl(private val okHttpRepo: RefreshClientRepository):
+class RefreshRetrofitRepositoryImpl(private val okHttpRepo: RefreshClientRepository) :
     RefreshRetrofitRepository {
     @SuppressLint("DefaultLocale")
     override fun getRefreshRetrofit(): Retrofit {
@@ -26,11 +26,13 @@ class RefreshRetrofitRepositoryImpl(private val okHttpRepo: RefreshClientReposit
     }
 }
 
-class AccessRetrofitRepositoryImpl(private val okHttpRepo: AccessClientRepository): AccessRetrofitRepository {
+class AccessRetrofitRepositoryImpl(private val okHttpRepo: AccessClientRepository) :
+    AccessRetrofitRepository {
     @SuppressLint("DefaultLocale")
     override fun getAccessRetrofit(): Retrofit {
         val client = okHttpRepo.getAccessOkHttp()
-        val baseUrl: String = ConverterUtil._Decode(UrlConst.DEV_URL)
+        //val baseUrl: String = ConverterUtil._Decode(UrlConst.DEV_URL) //error
+        val baseUrl: String = UrlConst.DEV_URL
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())

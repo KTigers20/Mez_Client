@@ -10,9 +10,9 @@ import retrofit2.http.POST
 
 interface PhoneBookService {
     @POST("getPersonInfo_byName")
-    fun getPersonInfoByName(@Body phoneBookInfoByNameRequest: PersonInfoByNameRequest): Single<Response<PhoneBookResponse>>
+    fun getPersonInfoByName(@Body phoneBookInfoByNameRequest: PersonInfoByNameRequest): Single<Response<List<PhoneBookResponse>>>
 
     @POST("getPersonInfo_byJob")
-    fun getPersonInfoByJob(@Body phoneBookInfoByJobRequest: PersonInfoByJobRequest): Single<Response<PhoneBookResponse>>
+    fun getPersonInfoByJob(@Body phoneBookInfoByJobRequest: PersonInfoByJobRequest): Single<Response<List<PhoneBookResponse>>>
 
 }

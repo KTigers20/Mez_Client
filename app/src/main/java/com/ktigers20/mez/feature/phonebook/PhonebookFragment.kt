@@ -14,6 +14,7 @@ import com.ktigers20.mez.databinding.FragmentPhonebookBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
+import org.koin.android.ext.android.get
 import java.util.concurrent.TimeUnit
 
 class PhonebookFragment : Fragment(), PhonebookContract.View {
@@ -31,7 +32,7 @@ class PhonebookFragment : Fragment(), PhonebookContract.View {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        presenter = PhonebookPresenter(this)
+        presenter = PhonebookPresenter(this, get())
     }
 
     override fun onCreateView(
@@ -54,7 +55,7 @@ class PhonebookFragment : Fragment(), PhonebookContract.View {
             .debounce(1000, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-
+                presenter.getPhoneBookInfoByName(it.toString(),0)
             }.addTo(compositeDisposable)
     }
 

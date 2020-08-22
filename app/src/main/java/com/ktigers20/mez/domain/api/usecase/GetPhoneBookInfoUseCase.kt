@@ -18,13 +18,13 @@ class GetPhoneBookInfoUseCase(accessRetrofitRepository: AccessRetrofitRepository
             .getAccessRetrofit()
             .create(PhoneBookService::class.java)
 
-    fun getPhoneBookInfoByName(personInfoByNameRequest: PersonInfoByNameRequest): Single<Response<PhoneBookResponse>> =
+    fun getPhoneBookInfoByName(personInfoByNameRequest: PersonInfoByNameRequest): Single<Response<List<PhoneBookResponse>>> =
         phoneBookService
             .getPersonInfoByName(personInfoByNameRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 
-    fun getPhoneBookInfoByJob(personInfoByJobRequest: PersonInfoByJobRequest): Single<Response<PhoneBookResponse>> =
+    fun getPhoneBookInfoByJob(personInfoByJobRequest: PersonInfoByJobRequest): Single<Response<List<PhoneBookResponse>>> =
         phoneBookService
             .getPersonInfoByJob(personInfoByJobRequest)
             .subscribeOn(Schedulers.io())

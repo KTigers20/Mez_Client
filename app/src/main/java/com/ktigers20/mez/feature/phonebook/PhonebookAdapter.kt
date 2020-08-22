@@ -36,10 +36,10 @@ class PhonebookAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bind(
-            userName: String, deptName: String, teamName: String, phoneNumber: String
+            userName: String, deptName: String, jobName: String, phoneNumber: String
         ) {
             mPhoneNumberTv.text = phoneNumber
-            mPersonInfoTv.text = "$userName / $deptName ($teamName)"
+            mPersonInfoTv.text = "$userName / $deptName ($jobName)"
         }
     }
 

@@ -11,6 +11,9 @@ interface PhonebookContract {
     interface Presenter {
         val view: View
 
-        fun getPhoneBookList()
+        fun getPhoneBookInfoByName(userName: String, pageNum: Long)
+        fun getPhoneBookInfoByJob(userJob: String, pageNum: Long)
+        fun onCleared()
     }
+
 }
