@@ -122,10 +122,7 @@ class PhonebookFragment : Fragment(), PhonebookContract.View {
                 if (dy >= 0 && phoneBookContentSize > 0) {
                     val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                     if (layoutManager.findLastCompletelyVisibleItemPosition() >= phoneBookContentSize - 1 && !phoneBookIsEnd) {
-                        presenter.getPhoneBookInfoByName(
-                            phonebookBinding.searchEditText.text.toString(),
-                            phoneBookPage
-                        )
+                        callPhoneBookApi(phonebookBinding.searchEditText.text.toString())
                     }
                 }
             }

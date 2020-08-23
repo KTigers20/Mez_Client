@@ -5,6 +5,7 @@ import com.ktigers20.mez.data.entity.PhoneBookInfo
 interface PhonebookContract {
     interface View {
         fun setPhoneBookList(phoneBookList: ArrayList<PhoneBookInfo>)
+
         fun setPhoneBookPageIsEnd(isEnd: Boolean)
     }
 
