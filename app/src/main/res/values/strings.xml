@@ -9,4 +9,8 @@
     <string name="user_name">담당자</string>
     <string name="user_job">업무</string>
     <string name="job_name_is_null">업무 정보 없음</string>
+
+    <string name="my_batch">My</string>
+    <string name="all_batch">All</string>
+    <string name="batch_status">Batch 현황</string>
 </resources>
