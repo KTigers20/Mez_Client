@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/back"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="110dp"
         android:layout_marginBottom="8dp"
         android:background="@color/colorWhite"
         android:orientation="vertical">
@@ -23,14 +23,27 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="신세경/비즈니스개발부 (청약/제권리)" />
+            tools:text="신세경/비즈니스개발부" />
+
+        <TextView
+            android:id="@+id/phone_book_job_info"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="(기간계/정보계 DB관리, 비정기SQL수행, DB오브젝트 운영반영 백업데이터복구, 데이터표준)"/>
 
         <TextView
             android:id="@+id/phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="70dp"
             android:textColor="@color/kbDeactivate"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,20 +54,20 @@
         <Button
             android:layout_width="24dp"
             android:layout_height="24dp"
-            app:layout_constraintVertical_bias="0.4"
             android:layout_marginEnd="20dp"
             android:background="@drawable/ic_direct_call"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/kbLine"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="1.0"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -47,6 +47,7 @@ class PhonebookAdapter(
                 .inflate(R.layout.item_phone_book, parent, false)
         ) {
         private val mPhoneNumberTv: TextView = itemView.phone_number
+        private val mJobInfo: TextView = itemView.phone_book_job_info
         private val mPersonInfoTv: TextView = itemView.phone_book_person_info
 
         @SuppressLint("SetTextI18n")
@@ -55,9 +56,11 @@ class PhonebookAdapter(
         ) {
             mPhoneNumberTv.text = phoneNumber
             if (jobName == null) {
-                mPersonInfoTv.text = "$userName / $deptName (업무정보 없음)"
+                mPersonInfoTv.text = "$userName / $deptName"
+                mJobInfo.text = "(업무정보 없음)"
             } else {
-                mPersonInfoTv.text = "$userName / $deptName ($jobName)"
+                mPersonInfoTv.text = "$userName / $deptName"
+                mJobInfo.text = "$jobName"
             }
         }
     }
