@@ -32,5 +32,4 @@ interface SharedPrefRepository {
     fun getString(key: String?): Observable<String?>?
 
     fun getInteger(key: String?): Observable<Int?>?
-
 }
