@@ -8,8 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/back_item_list_phone"
-        android:elevation="4dp"
+        android:background="@color/colorWhite"
         android:orientation="vertical">
 
 
@@ -18,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/text"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -31,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="27dp"
             android:textColor="@color/kbDeactivate"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -42,11 +41,20 @@
         <Button
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginTop="24dp"
+            app:layout_constraintVertical_bias="0.4"
             android:layout_marginEnd="20dp"
             android:background="@drawable/ic_direct_call"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/kbLine"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="1.0"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

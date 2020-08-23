@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ktigers20.mez.R
 import com.ktigers20.mez.data.entity.PhoneBookInfo
@@ -23,7 +24,21 @@ class PhonebookAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = phoneBookList[position]
-        holder.bind(item.userNm, item.deptName, item.teamName, item.phoneNumber)
+        holder.bind(item.uSER_NM, item.dEPT_NM, item.uSER_JOB, item.uSER_HP)
+    }
+
+    fun submitList(newPhoneBookList: ArrayList<PhoneBookInfo>) {
+        val oldList: ArrayList<PhoneBookInfo> = ArrayList()
+        phoneBookList.map {
+            oldList.add(it)
+        }
+        newPhoneBookList.map {
+            phoneBookList.add(it)
+        }
+        val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(
+            PhoneBookItemDiffCallback(oldList, phoneBookList)
+        )
+        diffResult.dispatchUpdatesTo(this)
     }
 
     inner class ViewHolder(parent: ViewGroup) :
@@ -36,10 +51,35 @@ class PhonebookAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bind(
-            userName: String, deptName: String, jobName: String, phoneNumber: String
+            userName: String, deptName: String, jobName: String?, phoneNumber: String?
         ) {
             mPhoneNumberTv.text = phoneNumber
-            mPersonInfoTv.text = "$userName / $deptName ($jobName)"
+            if (jobName == null) {
+                mPersonInfoTv.text = "$userName / $deptName (업무정보 없음)"
+            } else {
+                mPersonInfoTv.text = "$userName / $deptName ($jobName)"
+            }
+        }
+    }
+
+    class PhoneBookItemDiffCallback(
+        private var oldPhoneBookList: List<PhoneBookInfo>,
+        private var newPhoneBookList: List<PhoneBookInfo>
+    ) : DiffUtil.Callback() {
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return (oldPhoneBookList[oldItemPosition].uSER_HP.equals(newPhoneBookList[newItemPosition].uSER_HP))
+        }
+
+        override fun getOldListSize(): Int {
+            return oldPhoneBookList.size
+        }
+
+        override fun getNewListSize(): Int {
+            return newPhoneBookList.size
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return (oldPhoneBookList[oldItemPosition] == newPhoneBookList[newItemPosition])
         }
     }
 

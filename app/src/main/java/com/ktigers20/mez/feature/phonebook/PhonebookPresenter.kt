@@ -22,7 +22,8 @@ class PhonebookPresenter(
             PersonInfoByNameRequest(userName, pageNum)
         ).subscribe ({ phoneBookList ->
             phoneBookList.body()?.let {
-                //view.setPhoneBookList()
+                view.setPhoneBookList(it.contents)
+                view.setPhoneBookPageIsEnd(it.pageable.totalPage <= pageNum)
                 Log.e("PHONEBOOK_API", it.toString())
             } ?: run {
 
