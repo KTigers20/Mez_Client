@@ -20,7 +20,7 @@ class PhonebookPresenter(
     override fun getPhoneBookInfoByName(userName: String, pageNum: Long) {
         getPhoneBookInfoUseCase.getPhoneBookInfoByName(
             PersonInfoByNameRequest(userName, pageNum)
-        ).subscribe ({ phoneBookList ->
+        ).subscribe({ phoneBookList ->
             phoneBookList.body()?.let {
                 view.setPhoneBookList(it.contents)
                 view.setPhoneBookPageIsEnd(it.pageable.totalPage <= pageNum)
@@ -38,10 +38,16 @@ class PhonebookPresenter(
     override fun getPhoneBookInfoByJob(userJob: String, pageNum: Long) {
         getPhoneBookInfoUseCase.getPhoneBookInfoByJob(
             PersonInfoByJobRequest(userJob, pageNum)
-        ).subscribe({
+        ).subscribe({ phoneBookList ->
+            phoneBookList.body()?.let {
+                view.setPhoneBookList(it.contents)
+                view.setPhoneBookPageIsEnd(it.pageable.totalPage <= pageNum)
+            } ?: run {
 
+            }
         }, {
-
+            handleError(it)
+            Timber.e(it.localizedMessage)
         }).addTo(compositeDisposable)
     }
 

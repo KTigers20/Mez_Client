@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.tabs.TabLayout
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.ktigers20.mez.R
 import com.ktigers20.mez.data.entity.PhoneBookInfo
@@ -15,6 +16,7 @@ import com.ktigers20.mez.databinding.FragmentMainBinding
 import com.ktigers20.mez.databinding.FragmentPhonebookBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.addTo
 import org.koin.android.ext.android.get
 import java.util.concurrent.TimeUnit
@@ -30,7 +32,6 @@ class PhonebookFragment : Fragment(), PhonebookContract.View {
     private var phoneBookPage: Long = 0
     private var phoneBookContentSize = 0
     private var phoneBookIsEnd = false
-
 
     companion object {
         @JvmStatic
@@ -64,15 +65,43 @@ class PhonebookFragment : Fragment(), PhonebookContract.View {
     }
 
     private fun initView() {
-        //1초 미만 입력시 서버 통신
-        RxTextView.textChanges(phonebookBinding.searchEditText)
-            .debounce(1000, TimeUnit.MILLISECONDS)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                initPageInfo()
-                mPhoneBookAdapter = PhonebookAdapter(mPhoneBookInfoList)
-                presenter.getPhoneBookInfoByName(it.toString(), phoneBookPage)
-            }.addTo(compositeDisposable)
+
+        phonebookBinding.phoneBookTabLayout.addOnTabSelectedListener(object :
+        TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when(tab?.position) {
+                    0 -> {
+                        //compositeDisposable.clear()
+                        //1초 미만 입력시 서버 통신
+                        RxTextView.textChanges(phonebookBinding.searchEditText)
+                            .debounce(1000, TimeUnit.MILLISECONDS)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe {
+                                initPageInfo()
+                                mPhoneBookAdapter = PhonebookAdapter(mPhoneBookInfoList)
+                                presenter.getPhoneBookInfoByName(it.toString(), phoneBookPage)
+                            }.addTo(compositeDisposable)
+                    }
+                    1 -> {
+                        //compositeDisposable.clear()
+                        //1초 미만 입력시 서버 통신
+                        RxTextView.textChanges(phonebookBinding.searchEditText)
+                            .debounce(1000, TimeUnit.MILLISECONDS)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe {
+                                initPageInfo()
+                                mPhoneBookAdapter = PhonebookAdapter(mPhoneBookInfoList)
+                                presenter.getPhoneBookInfoByJob(it.toString(), phoneBookPage)
+                            }.addTo(compositeDisposable)
+
+                    }
+                }
+            }
+        })
     }
 
     override fun setPhoneBookList(phoneBookList: ArrayList<PhoneBookInfo>) {
