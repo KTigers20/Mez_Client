@@ -27,7 +27,7 @@
 
         <TextView
             android:id="@+id/phone_book_job_info"
-            android:layout_width="300dp"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:textColor="@color/text"
             android:textSize="14sp"

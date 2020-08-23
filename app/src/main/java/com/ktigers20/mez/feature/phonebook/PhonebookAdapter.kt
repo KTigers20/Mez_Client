@@ -70,7 +70,7 @@ class PhonebookAdapter(
         private var newPhoneBookList: List<PhoneBookInfo>
     ) : DiffUtil.Callback() {
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return (oldPhoneBookList[oldItemPosition].uSER_HP.equals(newPhoneBookList[newItemPosition].uSER_HP))
+            return (oldPhoneBookList[oldItemPosition].uSER_CD == newPhoneBookList[newItemPosition].uSER_CD)
         }
 
         override fun getOldListSize(): Int {

@@ -1,13 +1,12 @@
 package com.ktigers20.mez.feature.tab
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ktigers20.mez.R
 import com.ktigers20.mez.databinding.ActivityTabBinding
-import com.ktigers20.mez.domain.utils.toastShort
 import com.ktigers20.mez.feature.main.MainFragment
 import com.ktigers20.mez.feature.phonebook.PhonebookFragment
 import com.ktigers20.mez.feature.search.SearchFragment
