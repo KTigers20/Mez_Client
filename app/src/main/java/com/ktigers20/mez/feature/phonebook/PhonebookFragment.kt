@@ -65,43 +65,25 @@ class PhonebookFragment : Fragment(), PhonebookContract.View {
     }
 
     private fun initView() {
+        RxTextView.textChanges(phonebookBinding.searchEditText)
+            .debounce(500, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                initPageInfo()
+                mPhoneBookAdapter = PhonebookAdapter(mPhoneBookInfoList)
+                callPhoneBookApi(it.toString())
+            }.addTo(compositeDisposable)
+    }
 
-        phonebookBinding.phoneBookTabLayout.addOnTabSelectedListener(object :
-        TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                when(tab?.position) {
-                    0 -> {
-                        //compositeDisposable.clear()
-                        //1초 미만 입력시 서버 통신
-                        RxTextView.textChanges(phonebookBinding.searchEditText)
-                            .debounce(1000, TimeUnit.MILLISECONDS)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe {
-                                initPageInfo()
-                                mPhoneBookAdapter = PhonebookAdapter(mPhoneBookInfoList)
-                                presenter.getPhoneBookInfoByName(it.toString(), phoneBookPage)
-                            }.addTo(compositeDisposable)
-                    }
-                    1 -> {
-                        //compositeDisposable.clear()
-                        //1초 미만 입력시 서버 통신
-                        RxTextView.textChanges(phonebookBinding.searchEditText)
-                            .debounce(1000, TimeUnit.MILLISECONDS)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe {
-                                initPageInfo()
-                                mPhoneBookAdapter = PhonebookAdapter(mPhoneBookInfoList)
-                                presenter.getPhoneBookInfoByJob(it.toString(), phoneBookPage)
-                            }.addTo(compositeDisposable)
-
-                    }
-                }
+    private fun callPhoneBookApi(str: String) {
+        when(phonebookBinding.phoneBookTabLayout.selectedTabPosition) {
+            0 -> {
+                presenter.getPhoneBookInfoByName(str, phoneBookPage)
             }
-        })
+            1 -> {
+                presenter.getPhoneBookInfoByJob(str, phoneBookPage)
+            }
+        }
     }
 
     override fun setPhoneBookList(phoneBookList: ArrayList<PhoneBookInfo>) {

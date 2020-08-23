@@ -23,7 +23,7 @@ class PhonebookPresenter(
         ).subscribe({ phoneBookList ->
             phoneBookList.body()?.let {
                 view.setPhoneBookList(it.contents)
-                view.setPhoneBookPageIsEnd(it.pageable.totalPage <= pageNum)
+                view.setPhoneBookPageIsEnd(it.pageable.totalPage + 1 <= pageNum)
                 Log.e("PHONEBOOK_API", it.toString())
             } ?: run {
 

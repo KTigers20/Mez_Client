@@ -12,7 +12,9 @@ interface PhonebookContract {
         val view: View
 
         fun getPhoneBookInfoByName(userName: String, pageNum: Long)
+
         fun getPhoneBookInfoByJob(userJob: String, pageNum: Long)
+
         fun onCleared()
     }
 

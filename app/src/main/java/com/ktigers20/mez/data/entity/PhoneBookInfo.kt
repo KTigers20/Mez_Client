@@ -19,5 +19,33 @@ data class PhoneBookInfo(
     @SerializedName("DEPT_NM") val dEPT_NM: String,
     @SerializedName("USER_NM") val uSER_NM: String,
     @SerializedName("USER_HP") val uSER_HP: String?,
-    @SerializedName("USER_JOB") val uSER_JOB: String?
-)
+    @SerializedName("USER_JOB") val uSER_JOB: String?,
+    @SerializedName("USER_CD") val uSER_CD : Int
+) {
+    override fun equals(other: Any?): Boolean {
+        if(javaClass != other?.javaClass) {
+            return false
+        }
+
+        other as PhoneBookInfo
+
+        if(uSER_CD != other.uSER_CD) {
+            return false
+        }
+        if(uSER_JOB != other.uSER_JOB) {
+            return false
+        }
+        if(uSER_HP != other.uSER_HP) {
+            return false
+        }
+        if(uSER_NM != other.uSER_NM) {
+            return false
+        }
+        if(dEPT_NM != other.dEPT_NM) {
+            return false
+        }
+        return true
+    }
+}
+
+
