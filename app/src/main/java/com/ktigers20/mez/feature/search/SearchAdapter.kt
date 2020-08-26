@@ -1,6 +1,7 @@
 package com.ktigers20.mez.feature.search
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -24,7 +25,7 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = batchInfoList[position]
-        holder.bind(item.jOB_NAME, item.uSER_NM, item.dEPT_NM, item.oRDER_TIME)
+        holder.bind(item.jOB_NAME, item.uSER_NM, item.dEPT_NM, item.oRDER_TIME, item.sTATUS)
     }
 
     fun submitList(newBatchInfoList: ArrayList<BatchInfo>) {
@@ -49,12 +50,27 @@ class SearchAdapter(
         private val mBatchNameTv: TextView = itemView.batch_name
         private val mDeptAndUserTv: TextView = itemView.dept_and_user
         private val mOrderTimeTV: TextView = itemView.order_time
+        private val mStatusTV: TextView = itemView.status_tv
+
 
         @SuppressLint("SetTextI18n")
-        fun bind(batchName: String, userName: String, deptName: String, orderTime: String) {
+        fun bind(
+            batchName: String,
+            userName: String,
+            deptName: String,
+            orderTime: String,
+            status: String
+        ) {
             mBatchNameTv.text = batchName
             mDeptAndUserTv.text = "$userName / $deptName"
             mOrderTimeTV.text = "시작 시간 : $orderTime"
+            if (status == "SUCCESS") {
+                mStatusTV.text = "Success"
+                mStatusTV.setTextColor(Color.parseColor("#6FCF97"))
+            } else {
+                mStatusTV.text = "Fail"
+                mStatusTV.setTextColor(Color.parseColor("#EB5757"))
+            }
         }
     }
 
