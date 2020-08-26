@@ -14,5 +14,4 @@ interface PhoneBookService {
 
     @POST("getPersonInfo_byJob")
     fun getPersonInfoByJob(@Body phoneBookInfoByJobRequest: PersonInfoByJobRequest): Single<Response<PhoneBookResponse>>
-
 }
