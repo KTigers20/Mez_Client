@@ -12,7 +12,8 @@ import com.ktigers20.mez.data.entity.BatchInfo
 import kotlinx.android.synthetic.main.item_batch_info.view.*
 
 class SearchAdapter(
-    private val batchInfoList: ArrayList<BatchInfo>
+    private val batchInfoList: ArrayList<BatchInfo>,
+    private val isClicked: (String) -> Unit
 ) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +26,7 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = batchInfoList[position]
-        holder.bind(item.jOB_NAME, item.uSER_NM, item.dEPT_NM, item.oRDER_TIME, item.sTATUS)
+        holder.bind(item.jOB_NAME, item.uSER_NM, item.dEPT_NM, item.oRDER_TIME, item.sTATUS, item.oRDER_ID, isClicked)
     }
 
     fun submitList(newBatchInfoList: ArrayList<BatchInfo>) {
@@ -59,7 +60,9 @@ class SearchAdapter(
             userName: String,
             deptName: String,
             orderTime: String,
-            status: String
+            status: String,
+            orderId: String,
+            isClicked: (String) -> Unit
         ) {
             mBatchNameTv.text = batchName
             mDeptAndUserTv.text = "$userName / $deptName"
@@ -71,6 +74,7 @@ class SearchAdapter(
                 mStatusTV.text = "Fail"
                 mStatusTV.setTextColor(Color.parseColor("#EB5757"))
             }
+            itemView.setOnClickListener { isClicked(orderId) }
         }
     }
 
