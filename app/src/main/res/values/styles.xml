@@ -1,10 +1,15 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+
         <item name="colorPrimary">@color/kbYellow</item>
         <item name="colorPrimaryDark">@color/colorWhite</item>
         <item name="colorAccent">@color/kbLine</item>
+
+        <item name="android:textViewStyle">@style/customTextViewFontStyle</item>
+        <item name="android:buttonStyle">@style/customButtonFontStyle</item>
+        <item name="android:editTextStyle">@style/customEditTextFontStyle</item>
+        <item name="android:radioButtonStyle">@style/customRadioButtonFontStyle</item>
 
         <item name="android:windowBackground">@color/colorWhite</item>
         <item name="android:windowLightStatusBar">true</item>
@@ -32,5 +37,6 @@
     <style name="tab_text" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">16sp</item>
     </style>
+
 
 </resources>

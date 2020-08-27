@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".feature.main.MainFragment">
-
     <data>
 
         <variable
@@ -74,7 +73,8 @@
             android:hint="담당자/업무 입력"
             android:singleLine="true"
             android:textSize="20sp"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:fontFamily="@font/kbfgtextm"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
             android:layout_width="wrap_content"
