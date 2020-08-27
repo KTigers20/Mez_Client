@@ -22,3 +22,4 @@ class GetBatchInfoUseCase(accessRetrofitRepository: AccessRetrofitRepository) {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 }
+

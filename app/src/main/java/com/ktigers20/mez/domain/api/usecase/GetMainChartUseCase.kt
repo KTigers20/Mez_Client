@@ -17,13 +17,13 @@ class GetMainChartUseCase(accessRetrofitRepository: AccessRetrofitRepository) {
             .getAccessRetrofit()
             .create(MainService::class.java)
 
-    fun getMyMainChartData(getMyChartRequest: GetMyChartRequest): Single<Response<List<GetMyChartResponse>>> =
+    fun getMyMainChartData(getMyChartRequest: GetMyChartRequest): Single<Response<ArrayList<GetMyChartResponse>>> =
         mainService
             .getMyMainChartData(getMyChartRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 
-    fun getAllMainChartData(personInfoByJobRequest: PersonInfoByJobRequest): Single<Response<List<GetAllChartResponse>>> =
+    fun getAllMainChartData(): Single<Response<ArrayList<GetAllChartResponse>>> =
         mainService
             .getAllMainChartData()
             .subscribeOn(Schedulers.io())

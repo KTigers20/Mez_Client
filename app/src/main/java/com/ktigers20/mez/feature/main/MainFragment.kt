@@ -3,18 +3,19 @@ package com.ktigers20.mez.feature.main
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.mikephil.charting.charts.HorizontalBarChart
+import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.utils.ColorTemplate
-import com.ktigers20.mez.R
+import com.google.android.material.tabs.TabLayout
+import com.ktigers20.mez.data.entity.MainBarChartInfo
+import com.ktigers20.mez.data.response.GetAllChartResponse
+import com.ktigers20.mez.data.response.GetMyChartResponse
 import com.ktigers20.mez.databinding.FragmentMainBinding
-import kotlinx.android.synthetic.main.activity_search_detail.view.*
+import org.koin.android.ext.android.get
 
 
 class MainFragment : Fragment(), MainContract.View {
@@ -28,7 +29,7 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        presenter = MainPresenter(this)
+        presenter = MainPresenter(this, get())
     }
 
     override fun onCreateView(
@@ -46,47 +47,117 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     private fun initView() {
-        setUpChart()
+        mainBinding.mainTabLayout.addOnTabSelectedListener(object:
+        TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
 
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
 
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab?.position) {
+                    0 -> {
+                        presenter.getMyBarChart("SE12055")
+                    }
+                    1 -> {
+                        presenter.getAllBarChart()
+                    }
+                }
+            }
+
+        })
     }
 
-    private fun setUpChart() {
+    override fun setMyBarChart(mainBarChartInfo: ArrayList<GetMyChartResponse>) {
+        var edwSuccessCnt = 0
+        var operSuccessCnt = 0
+        var infoSuccessCnt = 0
+        var edwFailCnt = 0
+        var operFailCnt = 0
+        var infoFailCnt = 0
+
+        for (chartInfo in mainBarChartInfo) {
+            if (chartInfo.sTATUS.trim() == "SUCCESS") {
+                edwSuccessCnt += chartInfo.cNT_EDW
+                operSuccessCnt += chartInfo.cNT_OPER
+                infoSuccessCnt += chartInfo.cNT_INFO
+            } else if (chartInfo.sTATUS.trim() == "FAIL") {
+                edwFailCnt += chartInfo.cNT_EDW
+                operFailCnt += chartInfo.cNT_OPER
+                infoFailCnt += chartInfo.cNT_INFO
+            }
+        }
+        setUpChart(
+            MainBarChartInfo(
+                operSuccessCnt,
+                infoSuccessCnt,
+                edwSuccessCnt,
+                operFailCnt,
+                infoFailCnt,
+                infoFailCnt
+            )
+        )
+    }
+
+    override fun setAllBarChart(mainBarChartInfo: ArrayList<GetAllChartResponse>) {
+        var edwSuccessCnt = 0
+        var operSuccessCnt = 0
+        var infoSuccessCnt = 0
+        var edwFailCnt = 0
+        var operFailCnt = 0
+        var infoFailCnt = 0
+
+        for (chartInfo in mainBarChartInfo) {
+            if (chartInfo.eDW_STATUS.trim() == "SUCCESS") {
+                edwSuccessCnt += chartInfo.cNT_EDW
+                operSuccessCnt += chartInfo.cNT_OPERATION
+                infoSuccessCnt += chartInfo.cNT_INFORMATION
+            } else if (chartInfo.eDW_STATUS.trim() == "FAIL") {
+                edwFailCnt += chartInfo.cNT_EDW
+                operFailCnt += chartInfo.cNT_OPERATION
+                infoFailCnt += chartInfo.cNT_INFORMATION
+            }
+        }
+        setUpChart(
+            MainBarChartInfo(
+                operSuccessCnt,
+                infoSuccessCnt,
+                edwSuccessCnt,
+                operFailCnt,
+                infoFailCnt,
+                infoFailCnt
+            )
+        )
+    }
+
+    private fun setUpChart(mainPageChartInfo: MainBarChartInfo) {
         val horizontalBarChart = mainBinding.horizontalBarChart
         val noOfBatch = ArrayList<BarEntry>()
-        noOfBatch.add(BarEntry(348f, 0))
-        noOfBatch.add(BarEntry(50f, 1))
-        noOfBatch.add(BarEntry(10f, 2))
+        noOfBatch.add(BarEntry(mainPageChartInfo.cNT_INFO_fail.toFloat(), 0))
+        noOfBatch.add(BarEntry(mainPageChartInfo.cNT_INFO_success.toFloat(), 1))
 
-        noOfBatch.add(BarEntry(10f, 3))
-        noOfBatch.add(BarEntry(10f, 4))
-        noOfBatch.add(BarEntry(10f, 5))
+        noOfBatch.add(BarEntry(mainPageChartInfo.cNT_OPER_fail.toFloat(), 2))
+        noOfBatch.add(BarEntry(mainPageChartInfo.cNT_OPER_success.toFloat(), 3))
 
-        noOfBatch.add(BarEntry(10f, 6))
-        noOfBatch.add(BarEntry(10f, 7))
-        noOfBatch.add(BarEntry(10f, 8))
+        noOfBatch.add(BarEntry(mainPageChartInfo.cNT_EDW_fail.toFloat(), 4))
+        noOfBatch.add(BarEntry(mainPageChartInfo.cNT_EDW_success.toFloat(), 5))
 
 
         val category = ArrayList<String>()
-        category.add("Waiting")
         category.add("Fail")
         category.add("Success")
 
-        category.add("Waiting")
         category.add("Fail")
         category.add("Success")
 
-        category.add("Waiting")
         category.add("Fail")
         category.add("Success")
 
 
-        var barDataSet = BarDataSet(noOfBatch, "batch")
+        val barDataSet = BarDataSet(noOfBatch, "batch")
         horizontalBarChart.animateY(1000)
-        var data = BarData(category, barDataSet)
+        val data = BarData(category, barDataSet)
         barDataSet.colors =
             mutableListOf(
-                Color.parseColor("#C2C7CF"),
                 Color.parseColor("#FF8181"),
                 Color.parseColor("#6FCF97")
             )
@@ -94,4 +165,5 @@ class MainFragment : Fragment(), MainContract.View {
         horizontalBarChart.data = data
         horizontalBarChart.setDescription("")
     }
+
 }

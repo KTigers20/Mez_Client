@@ -12,8 +12,8 @@ import retrofit2.http.POST
 
 interface MainService {
     @POST("getMainChartData_My")
-    fun getMyMainChartData(@Body getMyChartRequest: GetMyChartRequest): Single<Response<List<GetMyChartResponse>>>
+    fun getMyMainChartData(@Body getMyChartRequest: GetMyChartRequest): Single<Response<ArrayList<GetMyChartResponse>>>
 
     @POST("getMainChartData_All")
-    fun getAllMainChartData(): Single<Response<List<GetAllChartResponse>>>
+    fun getAllMainChartData(): Single<Response<ArrayList<GetAllChartResponse>>>
 }
