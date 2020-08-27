@@ -66,7 +66,7 @@ class SearchAdapter(
         ) {
             mBatchNameTv.text = batchName
             mDeptAndUserTv.text = "$userName / $deptName"
-            mOrderTimeTV.text = "시작 시간 : $orderTime"
+            mOrderTimeTV.text = "시작 시간 : " + parseDateString(orderTime)
             if (status == "SUCCESS") {
                 mStatusTV.text = "Success"
                 mStatusTV.setTextColor(Color.parseColor("#6FCF97"))
@@ -75,6 +75,16 @@ class SearchAdapter(
                 mStatusTV.setTextColor(Color.parseColor("#EB5757"))
             }
             itemView.setOnClickListener { isClicked(orderId) }
+        }
+
+        private fun parseDateString(dateStr: String): String {
+            val year = dateStr.substring(0,4)
+            val month = dateStr.substring(4,6)
+            val day = dateStr.substring(6,8)
+            val hour = dateStr.substring(8,10)
+            val minute = dateStr.substring(10,12)
+            val second = dateStr.substring(12)
+            return "$year/$month/$day $hour:$minute:$second"
         }
     }
 

@@ -14,7 +14,7 @@ import com.ktigers20.mez.data.entity.BatchInfo
 import com.ktigers20.mez.databinding.FragmentSearchBinding
 import com.ktigers20.mez.domain.globalconst.Consts
 import com.ktigers20.mez.domain.utils.addTo
-import com.ktigers20.mez.feature.batchDetail.BatchDetailActivity
+import com.ktigers20.mez.feature.searchDetail.SearchDetailActivity
 import com.ktigers20.mez.singleton.SearchFilter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -121,7 +121,7 @@ class SearchFragment : Fragment(), SearchContract.View {
     }
 
     private val batchCardViewClicked = { orderId: String ->
-        startActivity(Intent(activity, BatchDetailActivity::class.java).apply {
+        startActivity(Intent(activity, SearchDetailActivity::class.java).apply {
             putExtra(Consts.ORDER_ID, orderId)
         })
     }
