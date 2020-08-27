@@ -6,6 +6,6 @@ import com.ktigers20.mez.data.entity.PhoneBookInfo
 
 
 data class PhoneBookResponse(
-    @SerializedName("contents") val contents: ArrayList<PhoneBookInfo>,
-    @SerializedName("pageable") val pageable: Pageable
+    @SerializedName("contents") var contents: ArrayList<PhoneBookInfo>,
+    @SerializedName("pageable") var pageable: Pageable
 )
