@@ -47,6 +47,7 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     private fun initView() {
+        presenter.getMyBarChart("SE12055")
         mainBinding.mainTabLayout.addOnTabSelectedListener(object:
         TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
