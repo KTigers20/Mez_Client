@@ -3,14 +3,15 @@ package com.ktigers20.mez.feature.search
 import android.annotation.SuppressLint
 import com.ktigers20.mez.data.request.SearchRequest
 import com.ktigers20.mez.domain.api.usecase.GetBatchInfoUseCase
+import com.ktigers20.mez.domain.utils.addTo
 import com.ktigers20.mez.singleton.SearchFilter
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.HttpException
 import timber.log.Timber
 
 class SearchPresenter(
-    override val view: SearchContract.View
-    , private val getBatchInfoUseCase: GetBatchInfoUseCase
+    override val view: SearchContract.View,
+    private val getBatchInfoUseCase: GetBatchInfoUseCase
 ) : SearchContract.Presenter {
     private val compositeDisposable = CompositeDisposable()
 
@@ -38,7 +39,7 @@ class SearchPresenter(
         }, {
             handleError(it)
             Timber.e(it.localizedMessage)
-        })
+        }).addTo(compositeDisposable)
     }
 
     private fun handleError(throwable: Throwable) {

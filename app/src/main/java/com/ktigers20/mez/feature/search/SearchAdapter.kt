@@ -12,7 +12,8 @@ import com.ktigers20.mez.data.entity.BatchInfo
 import kotlinx.android.synthetic.main.item_batch_info.view.*
 
 class SearchAdapter(
-    private val batchInfoList: ArrayList<BatchInfo>
+    private val batchInfoList: ArrayList<BatchInfo>,
+    private val isClicked: (String) -> Unit
 ) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +26,7 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = batchInfoList[position]
-        holder.bind(item.jOB_NAME, item.uSER_NM, item.dEPT_NM, item.oRDER_TIME, item.sTATUS)
+        holder.bind(item.jOB_NAME, item.uSER_NM, item.dEPT_NM, item.oRDER_TIME, item.sTATUS, item.oRDER_ID, isClicked)
     }
 
     fun submitList(newBatchInfoList: ArrayList<BatchInfo>) {
@@ -59,11 +60,13 @@ class SearchAdapter(
             userName: String,
             deptName: String,
             orderTime: String,
-            status: String
+            status: String,
+            orderId: String,
+            isClicked: (String) -> Unit
         ) {
             mBatchNameTv.text = batchName
             mDeptAndUserTv.text = "$userName / $deptName"
-            mOrderTimeTV.text = "시작 시간 : $orderTime"
+            mOrderTimeTV.text = "시작 시간 : " + parseDateString(orderTime)
             if (status == "SUCCESS") {
                 mStatusTV.text = "Success"
                 mStatusTV.setTextColor(Color.parseColor("#6FCF97"))
@@ -71,6 +74,17 @@ class SearchAdapter(
                 mStatusTV.text = "Fail"
                 mStatusTV.setTextColor(Color.parseColor("#EB5757"))
             }
+            itemView.setOnClickListener { isClicked(orderId) }
+        }
+
+        private fun parseDateString(dateStr: String): String {
+            val year = dateStr.substring(0,4)
+            val month = dateStr.substring(4,6)
+            val day = dateStr.substring(6,8)
+            val hour = dateStr.substring(8,10)
+            val minute = dateStr.substring(10,12)
+            val second = dateStr.substring(12)
+            return "$year/$month/$day $hour:$minute:$second"
         }
     }
 

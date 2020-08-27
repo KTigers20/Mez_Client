@@ -10,5 +10,6 @@ class Consts {
         const val REFRESH_TOKEN = "REFRESH_TOKEN"
 
         const val TOKEN_TIME_KEY = "TOKEN_TIME_KEY"
+        const val ORDER_ID = "ORDER_ID"
     }
 }

@@ -1,6 +1,7 @@
 package com.ktigers20.mez.feature.search
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.ktigers20.mez.data.entity.BatchInfo
 import com.ktigers20.mez.databinding.FragmentSearchBinding
+import com.ktigers20.mez.domain.globalconst.Consts
 import com.ktigers20.mez.domain.utils.addTo
+import com.ktigers20.mez.feature.searchDetail.SearchDetailActivity
 import com.ktigers20.mez.singleton.SearchFilter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -31,12 +34,12 @@ class SearchFragment : Fragment(), SearchContract.View {
     private var searchIsEnd = false
 
     val searchRecyclerViewScrollListener: RecyclerView.OnScrollListener =
-        object: RecyclerView.OnScrollListener() {
+        object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if(dy >= 0 && searchContentSize > 0) {
+                if (dy >= 0 && searchContentSize > 0) {
                     val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                    if(layoutManager.findLastCompletelyVisibleItemPosition() >= searchContentSize - 1 && !searchIsEnd) {
+                    if (layoutManager.findLastCompletelyVisibleItemPosition() >= searchContentSize - 1 && !searchIsEnd) {
                         callSearchApi(searchBinding.searchEditText.text.toString())
                     }
                 }
@@ -71,9 +74,9 @@ class SearchFragment : Fragment(), SearchContract.View {
     override fun setBatchInfoList(batchInfoList: ArrayList<BatchInfo>) {
         mBatchInfoList.addAll(batchInfoList)
         searchContentSize = mBatchInfoList.size
-        if(searchContentSize != 0) {
-            if(searchPage < 1) {
-                mSearchAdapter = SearchAdapter(batchInfoList)  //?
+        if (searchContentSize != 0) {
+            if (searchPage < 1) {
+                mSearchAdapter = SearchAdapter(batchInfoList, batchCardViewClicked)  //?
                 searchBinding.recyclerView.apply {
                     layoutManager = LinearLayoutManager(context)
                     adapter = mSearchAdapter
@@ -100,7 +103,7 @@ class SearchFragment : Fragment(), SearchContract.View {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 initPageInfo()
-                mSearchAdapter = SearchAdapter(mBatchInfoList)
+                mSearchAdapter = SearchAdapter(mBatchInfoList, batchCardViewClicked)
                 callSearchApi(it.toString())
             }.addTo(compositeDisposable)
     }
@@ -115,6 +118,12 @@ class SearchFragment : Fragment(), SearchContract.View {
         searchPage = 0
         searchContentSize = 0
         searchIsEnd = false
+    }
+
+    private val batchCardViewClicked = { orderId: String ->
+        startActivity(Intent(activity, SearchDetailActivity::class.java).apply {
+            putExtra(Consts.ORDER_ID, orderId)
+        })
     }
 
     override fun onDestroy() {

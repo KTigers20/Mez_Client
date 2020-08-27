@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".feature.searchDetail.SearchDetailActivity"></activity>
         <activity
             android:name=".feature.tab.TabActivity"
             android:screenOrientation="portrait">
