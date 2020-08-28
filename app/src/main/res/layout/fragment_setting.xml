@@ -1,21 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="fragment"
             type="com.ktigers20.mez.feature.settings.SettingFragment" />
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".feature.settings.SettingFragment">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="setting" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="설정"
+            android:textStyle="bold"
+            android:textColor="@color/text"
+            android:textSize="20sp" />
 
-    </FrameLayout>
+        <TextView
+            android:id="@+id/dash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="메인 대시보드 설정"
+            android:textSize="16sp"
+            android:textColor="@color/text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="40dp"/>
+
+        <RadioGroup
+            android:id="@+id/main_dash_board_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/dash"
+            app:layout_constraintTop_toBottomOf="@+id/dash">
+
+            <RadioButton
+                android:id="@+id/changeable_btn"
+                android:layout_width="120dp"
+                android:layout_height="45dp"
+                android:background="@drawable/button_pressed_background"
+                android:button="@null"
+                android:gravity="center"
+                android:minWidth="100dp"
+                android:textStyle="italic"
+                android:text="My"
+                android:textSize="15sp"
+                android:textColor="@color/kbLine" />
+
+            <RadioButton
+                android:id="@+id/unchangeable_btn"
+                android:layout_width="120dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/button_default_background"
+                android:button="@null"
+                android:gravity="center"
+                android:minWidth="100dp"
+                android:textStyle="italic"
+                android:text="All"
+                android:textSize="15sp"
+                android:textColor="@color/kbLine" />
+        </RadioGroup>
+
+
+        <TextView
+            android:id="@+id/push"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PUSH 알림설정"
+            android:textSize="16sp"
+            android:textColor="@color/text"
+            app:layout_constraintTop_toBottomOf="@id/dash"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="40dp"/>
+
+        <RadioGroup
+            android:id="@+id/alarm_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/push"
+            app:layout_constraintTop_toBottomOf="@+id/push">
+
+            <RadioButton
+                android:id="@+id/push_yes"
+                android:layout_width="120dp"
+                android:layout_height="45dp"
+                android:background="@drawable/button_pressed_background"
+                android:button="@null"
+                android:gravity="center"
+                android:minWidth="100dp"
+                android:text="ON"
+                android:textStyle="italic"
+                android:textSize="15sp"
+                android:textColor="@color/kbLine" />
+
+            <RadioButton
+                android:id="@+id/push_no"
+                android:layout_width="120dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/button_default_background"
+                android:button="@null"
+                android:gravity="center"
+                android:minWidth="100dp"
+                android:text="OFF"
+                android:textStyle="italic"
+                android:textSize="15sp"
+                android:textColor="@color/kbLine" />
+        </RadioGroup>
+
+
+        <ImageView
+            android:id="@+id/alarmImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_bell"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
+import androidx.core.content.ContextCompat
 import com.ktigers20.mez.R
 import com.ktigers20.mez.databinding.FragmentSearchBinding
 import com.ktigers20.mez.databinding.FragmentSettingBinding
 import com.ktigers20.mez.feature.search.SearchFragment
 import com.ktigers20.mez.feature.search.SearchPresenter
+import com.ktigers20.mez.singleton.MainViewMode
 
 
 class SettingFragment : Fragment(), SettingContract.View {
@@ -19,7 +22,7 @@ class SettingFragment : Fragment(), SettingContract.View {
 
     companion object {
         @JvmStatic
-        fun newInstance() = SearchFragment()
+        fun newInstance() = SettingFragment()
     }
 
     override fun onAttach(context: Context) {
@@ -42,7 +45,65 @@ class SettingFragment : Fragment(), SettingContract.View {
     }
 
     private fun initView() {
+        settingsBinding.changeableBtn.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                buttonView.background = ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.button_pressed_background
+                )
+                buttonView.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.kbYellow
+                    )
+                )
+                MainViewMode.mode = "MY"
+            } else {
+                buttonView.background = ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.button_default_background
+                )
+                buttonView.setTextColor(ContextCompat.getColor(requireContext(), R.color.grey4))
+            }
+        })
+
+
+
+        settingsBinding.unchangeableBtn.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                buttonView.background = ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.button_pressed_background
+                )
+                buttonView.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.kbYellow
+                    )
+                )
+
+                //초기 '수정가능'버튼 색 변경 위함
+                settingsBinding.changeableBtn.background = ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.button_default_background
+                )
+                settingsBinding.changeableBtn.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.grey4
+                    )
+                )
+
+                MainViewMode.mode = "ALL"
+
+            } else {
+                buttonView.background = ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.button_default_background
+                )
+                buttonView.setTextColor(ContextCompat.getColor(requireContext(), R.color.grey4))
+            }
+        })
 
     }
-
 }
