@@ -1,33 +1,40 @@
 package com.ktigers20.mez.domain.koin.repositoryImpl
 
+import android.annotation.SuppressLint
 import com.ktigers20.mez.BuildConfig
 import com.ktigers20.mez.domain.globalconst.Consts
-import com.ktigers20.mez.domain.koin.repository.HttpClientRepository
-import com.ktigers20.mez.domain.koin.repository.RetrofitRepository
+import com.ktigers20.mez.domain.globalconst.UrlConst
+import com.ktigers20.mez.domain.koin.repository.*
+import com.ktigers20.mez.domain.utils.ConverterUtil
 import com.ktigers20.mez.domain.utils.add
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitRepositoryImpl(private val okHttpRepo: HttpClientRepository): RetrofitRepository {
-    private val versionInfo = "v1/"
-
+class RefreshRetrofitRepositoryImpl(private val okHttpRepo: RefreshClientRepository) :
+    RefreshRetrofitRepository {
+    @SuppressLint("DefaultLocale")
     override fun getRefreshRetrofit(): Retrofit {
         val client = okHttpRepo.getRefreshOkHttp()
-        val baseUrl: String = Consts.BASE_URL
+        val baseUrl: String = ConverterUtil._Decode(UrlConst.DEV_URL)
         return Retrofit.Builder()
-            .baseUrl(baseUrl add versionInfo)
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(client)
             .build()
     }
+}
 
+class AccessRetrofitRepositoryImpl(private val okHttpRepo: AccessClientRepository) :
+    AccessRetrofitRepository {
+    @SuppressLint("DefaultLocale")
     override fun getAccessRetrofit(): Retrofit {
         val client = okHttpRepo.getAccessOkHttp()
-        val baseUrl: String = Consts.BASE_URL
+        //val baseUrl: String = ConverterUtil._Decode(UrlConst.DEV_URL) //error
+        val baseUrl: String = UrlConst.DEV_URL
         return Retrofit.Builder()
-            .baseUrl(baseUrl add versionInfo)
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(client)

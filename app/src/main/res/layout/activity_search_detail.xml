@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".feature.searchDetail.SearchDetailActivity">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.ktigers20.mez.feature.searchDetail.SearchDetailActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/batch_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/text"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="dbp00v04.btq" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/batch_title"
+            android:text="dddd"/>
+
+        <TextView
+            android:id="@+id/p1_user_info_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:textColor="@color/text"
+            app:layout_constraintStart_toStartOf="@id/batch_title"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="담당자1 : 김성가 / 데이터플랫폼부" />
+
+        <TextView
+            android:id="@+id/p1_user_hp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/p1_user_info_tv"
+            tools:text="contact : 0109132****" />
+
+        <TextView
+            android:id="@+id/p2_user_info_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/text"
+            app:layout_constraintStart_toStartOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/p1_user_hp"
+            tools:text="담당자2 : 김성가 / 데이터플랫폼부" />
+
+        <TextView
+            android:id="@+id/p2_user_hp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/p2_user_info_tv"
+            tools:text="contact : 0109132****" />
+
+        <TextView
+            android:id="@+id/p3_user_info_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/text"
+            app:layout_constraintStart_toStartOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/p2_user_hp"
+            tools:text="담당자3 : 김성가 / 데이터플랫폼부" />
+
+        <TextView
+            android:id="@+id/p3_user_hp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/p3_user_info_tv"
+            tools:text="contact : 0109132****" />
+
+
+        <TextView
+            android:id="@+id/order_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="수행일시"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/p3_user_hp" />
+
+        <TextView
+            android:id="@+id/order_time_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/order_time_title"
+            tools:text="2020/08/13 14:04:15" />
+
+        <TextView
+            android:id="@+id/app_code_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="어플리케이션"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/order_time_content" />
+
+        <TextView
+            android:id="@+id/app_code_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/app_code_title"
+            tools:text="03F1.EDW-장시작전" />
+
+        <TextView
+            android:id="@+id/group_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="그룹명"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/app_code_content" />
+
+        <TextView
+            android:id="@+id/group_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/group_title"
+            tools:text="MA8.캠페인커뮤니케이션정보" />
+
+        <TextView
+            android:id="@+id/error_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="CMD_LINE"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/group_content" />
+
+        <TextView
+            android:id="@+id/error_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/error_title"
+            tools:text="/PROD2/MAP/MIG/BAT/dp00v04.btq" />
+
+        <TextView
+            android:id="@+id/error_action_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="오류 시 조치 방법"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/error_content" />
+
+        <TextView
+            android:id="@+id/error_action_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            app:layout_constraintLeft_toLeftOf="@id/batch_title"
+            app:layout_constraintTop_toBottomOf="@id/error_action_title"
+            tools:text="즉시 연락" />
+
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:textColor="@color/kbGreen"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Success" />
+
+        <Button
+            android:id="@+id/call_to_p1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/ic_direct_call"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/p1_user_info_tv"
+            android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/call_to_p2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/ic_direct_call"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/p2_user_info_tv"
+            android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/call_to_p3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/ic_direct_call"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/p3_user_info_tv"
+            android:visibility="invisible"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
