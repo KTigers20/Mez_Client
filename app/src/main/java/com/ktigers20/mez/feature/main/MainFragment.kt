@@ -15,6 +15,7 @@ import com.ktigers20.mez.data.entity.MainBarChartInfo
 import com.ktigers20.mez.data.response.GetAllChartResponse
 import com.ktigers20.mez.data.response.GetMyChartResponse
 import com.ktigers20.mez.databinding.FragmentMainBinding
+import com.ktigers20.mez.singleton.MainViewMode
 import org.koin.android.ext.android.get
 
 
@@ -47,9 +48,19 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     private fun initView() {
-        presenter.getMyBarChart("SE12055")
-        mainBinding.mainTabLayout.addOnTabSelectedListener(object:
-        TabLayout.OnTabSelectedListener {
+        if (MainViewMode.mode == "MY") {
+            val tab = mainBinding.mainTabLayout.getTabAt(0)
+            tab?.select()
+            presenter.getMyBarChart("SE12055")
+
+        } else {
+            val tab = mainBinding.mainTabLayout.getTabAt(1)
+            tab?.select()
+            presenter.getAllBarChart()
+
+        }
+        mainBinding.mainTabLayout.addOnTabSelectedListener(object :
+            TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}

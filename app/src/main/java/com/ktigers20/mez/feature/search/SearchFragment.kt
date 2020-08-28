@@ -14,6 +14,7 @@ import com.ktigers20.mez.data.entity.BatchInfo
 import com.ktigers20.mez.databinding.FragmentSearchBinding
 import com.ktigers20.mez.domain.globalconst.Consts
 import com.ktigers20.mez.domain.utils.addTo
+import com.ktigers20.mez.feature.filter.FilterActivity
 import com.ktigers20.mez.feature.searchDetail.SearchDetailActivity
 import com.ktigers20.mez.singleton.SearchFilter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -124,6 +125,10 @@ class SearchFragment : Fragment(), SearchContract.View {
         startActivity(Intent(activity, SearchDetailActivity::class.java).apply {
             putExtra(Consts.ORDER_ID, orderId)
         })
+    }
+
+    fun navigateToFilterActivity() {
+        startActivity(Intent(activity, FilterActivity::class.java))
     }
 
     override fun onDestroy() {

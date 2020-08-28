@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="activity"
+            type="com.ktigers20.mez.feature.filter.JobStateFilterActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".feature.filter.JobStateFilterActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="작업상태"
+            android:textStyle="bold"
+            android:textColor="@color/text"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.01" />
+
+
+        <RadioButton
+            android:id="@+id/success"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
+            android:text="Job Success"
+            android:textColor="@color/text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/success"
+            app:layout_constraintTop_toTopOf="@id/success" />
+
+        <RadioButton
+            android:id="@+id/fail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
+            android:text="Job Fail"
+            app:layout_constraintStart_toStartOf="@id/success"
+            app:layout_constraintTop_toBottomOf="@id/success" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
+            android:text="Job Fail"
+            android:textColor="@color/text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/fail"
+            app:layout_constraintTop_toTopOf="@id/fail" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
