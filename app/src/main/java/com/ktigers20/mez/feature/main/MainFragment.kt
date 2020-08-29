@@ -16,10 +16,7 @@ import com.ktigers20.mez.data.response.GetAllChartResponse
 import com.ktigers20.mez.data.response.GetMyChartResponse
 import com.ktigers20.mez.databinding.FragmentMainBinding
 import com.ktigers20.mez.domain.globalconst.Consts
-import com.ktigers20.mez.domain.koin.modules.sharedPrefModule
 import com.ktigers20.mez.domain.koin.repositoryImpl.SharedPrefRepositoryImpl
-import com.ktigers20.mez.singleton.MainViewMode
-import com.ktigers20.mez.singleton.UserInfo
 import org.koin.android.ext.android.get
 
 
@@ -62,7 +59,7 @@ class MainFragment : Fragment(), MainContract.View {
         if (sharedPrefRepositoryImpl.getPrefsStringValue(Consts.CHART_MODE) == "MY") {
             val tab = mainBinding.mainTabLayout.getTabAt(0)
             tab?.select()
-            presenter.getMyBarChart(UserInfo.userId)
+            presenter.getMyBarChart(sharedPrefRepositoryImpl.getPrefsStringValue(Consts.USER_ID)!!)
 
         } else {
             val tab = mainBinding.mainTabLayout.getTabAt(1)
@@ -78,8 +75,7 @@ class MainFragment : Fragment(), MainContract.View {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
                     0 -> {
-                        val a = UserInfo.userId
-                        presenter.getMyBarChart(UserInfo.userId)
+                        presenter.getMyBarChart(sharedPrefRepositoryImpl.getPrefsStringValue(Consts.USER_ID)!!)
                     }
                     1 -> {
                         presenter.getAllBarChart()
