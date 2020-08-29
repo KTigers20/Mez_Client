@@ -13,18 +13,20 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".feature.filter.JobStateFilterActivity"></activity>
-        <activity android:name=".feature.filter.FilterActivity" />
-        <activity android:name=".feature.searchDetail.SearchDetailActivity" />
-        <activity
-            android:name=".feature.tab.TabActivity"
-            android:screenOrientation="portrait">
+        <activity android:name=".feature.login.LoginActivity"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".feature.filter.JobStateFilterActivity" />
+        <activity android:name=".feature.filter.FilterActivity" />
+        <activity android:name=".feature.searchDetail.SearchDetailActivity" />
+        <activity
+            android:name=".feature.tab.TabActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -23,12 +23,12 @@ class JobStateFilterActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        binding.success.setOnCheckedChangeListener({buttonView, isChecked ->
+        binding.success.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked) {
                 SearchFilter.status = "SUCCESS"
             }
 
-        })
+        }
 
         binding.fail.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked) {

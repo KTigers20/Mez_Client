@@ -15,13 +15,18 @@ import com.ktigers20.mez.data.entity.MainBarChartInfo
 import com.ktigers20.mez.data.response.GetAllChartResponse
 import com.ktigers20.mez.data.response.GetMyChartResponse
 import com.ktigers20.mez.databinding.FragmentMainBinding
+import com.ktigers20.mez.domain.globalconst.Consts
+import com.ktigers20.mez.domain.koin.modules.sharedPrefModule
+import com.ktigers20.mez.domain.koin.repositoryImpl.SharedPrefRepositoryImpl
 import com.ktigers20.mez.singleton.MainViewMode
+import com.ktigers20.mez.singleton.UserInfo
 import org.koin.android.ext.android.get
 
 
 class MainFragment : Fragment(), MainContract.View {
     private lateinit var mainBinding: FragmentMainBinding
     private lateinit var presenter: MainPresenter
+    private lateinit var sharedPrefRepositoryImpl: SharedPrefRepositoryImpl
 
     companion object {
         @JvmStatic
@@ -32,6 +37,11 @@ class MainFragment : Fragment(), MainContract.View {
         super.onAttach(context)
         presenter = MainPresenter(this, get())
     }
+
+//    override fun onResume() {
+//        super.onResume()
+//        initView()
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,16 +58,16 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     private fun initView() {
-        if (MainViewMode.mode == "MY") {
+        sharedPrefRepositoryImpl = SharedPrefRepositoryImpl(requireContext())
+        if (sharedPrefRepositoryImpl.getPrefsStringValue(Consts.CHART_MODE) == "MY") {
             val tab = mainBinding.mainTabLayout.getTabAt(0)
             tab?.select()
-            presenter.getMyBarChart("SE12055")
+            presenter.getMyBarChart(UserInfo.userId)
 
         } else {
             val tab = mainBinding.mainTabLayout.getTabAt(1)
             tab?.select()
             presenter.getAllBarChart()
-
         }
         mainBinding.mainTabLayout.addOnTabSelectedListener(object :
             TabLayout.OnTabSelectedListener {
@@ -68,7 +78,8 @@ class MainFragment : Fragment(), MainContract.View {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
                     0 -> {
-                        presenter.getMyBarChart("SE12055")
+                        val a = UserInfo.userId
+                        presenter.getMyBarChart(UserInfo.userId)
                     }
                     1 -> {
                         presenter.getAllBarChart()
@@ -105,7 +116,7 @@ class MainFragment : Fragment(), MainContract.View {
                 edwSuccessCnt,
                 operFailCnt,
                 infoFailCnt,
-                infoFailCnt
+                edwFailCnt
             )
         )
     }
@@ -136,7 +147,7 @@ class MainFragment : Fragment(), MainContract.View {
                 edwSuccessCnt,
                 operFailCnt,
                 infoFailCnt,
-                infoFailCnt
+                edwFailCnt
             )
         )
     }
