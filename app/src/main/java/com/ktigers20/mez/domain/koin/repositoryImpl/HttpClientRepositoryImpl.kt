@@ -9,7 +9,6 @@ import com.ktigers20.mez.domain.koin.repository.AccessClientRepository
 import com.ktigers20.mez.domain.koin.repository.RefreshClientRepository
 import com.ktigers20.mez.domain.koin.repository.SharedPrefRepository
 import com.ktigers20.mez.domain.utils.ConverterUtil
-import com.ktigers20.mez.singleton.UserInfo
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
