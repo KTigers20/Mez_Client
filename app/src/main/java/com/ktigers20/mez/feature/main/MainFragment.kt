@@ -33,6 +33,11 @@ class MainFragment : Fragment(), MainContract.View {
         presenter = MainPresenter(this, get())
     }
 
+    override fun onResume() {
+        super.onResume()
+        initView()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
