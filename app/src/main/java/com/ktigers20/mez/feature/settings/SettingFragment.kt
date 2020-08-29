@@ -11,14 +11,20 @@ import androidx.core.content.ContextCompat
 import com.ktigers20.mez.R
 import com.ktigers20.mez.databinding.FragmentSearchBinding
 import com.ktigers20.mez.databinding.FragmentSettingBinding
+import com.ktigers20.mez.domain.globalconst.Consts
+import com.ktigers20.mez.domain.koin.modules.sharedPrefModule
+import com.ktigers20.mez.domain.koin.repositoryImpl.SharedPrefRepositoryImpl
+import com.ktigers20.mez.domain.sharedpref.SharedPreferenceHelper
 import com.ktigers20.mez.feature.search.SearchFragment
 import com.ktigers20.mez.feature.search.SearchPresenter
 import com.ktigers20.mez.singleton.MainViewMode
+import com.ktigers20.mez.userInfo.MainDashBoardMode
 
 
 class SettingFragment : Fragment(), SettingContract.View {
     private lateinit var settingsBinding: FragmentSettingBinding
     private lateinit var presenter: SettingPresenter
+    private lateinit var sharedPrefRepositoryImpl: SharedPrefRepositoryImpl
 
     companion object {
         @JvmStatic
@@ -45,6 +51,13 @@ class SettingFragment : Fragment(), SettingContract.View {
     }
 
     private fun initView() {
+        sharedPrefRepositoryImpl =  SharedPrefRepositoryImpl(requireContext())
+        if(sharedPrefRepositoryImpl.getPrefsStringValue(Consts.CHART_MODE) == "MY") {
+            settingsBinding.changeableBtn.performClick()
+        } else {
+            settingsBinding.unchangeableBtn.performClick()
+        }
+
         settingsBinding.changeableBtn.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 buttonView.background = ContextCompat.getDrawable(
@@ -58,6 +71,8 @@ class SettingFragment : Fragment(), SettingContract.View {
                     )
                 )
                 MainViewMode.mode = "MY"
+                sharedPrefRepositoryImpl.writePrefs(Consts.CHART_MODE, "MY")
+
             } else {
                 buttonView.background = ContextCompat.getDrawable(
                     requireContext(),
@@ -95,6 +110,7 @@ class SettingFragment : Fragment(), SettingContract.View {
                 )
 
                 MainViewMode.mode = "ALL"
+                sharedPrefRepositoryImpl.writePrefs(Consts.CHART_MODE , "ALL")
 
             } else {
                 buttonView.background = ContextCompat.getDrawable(

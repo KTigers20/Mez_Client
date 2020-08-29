@@ -12,5 +12,7 @@ class Consts {
         const val TOKEN_TIME_KEY = "TOKEN_TIME_KEY"
         const val ORDER_ID = "ORDER_ID"
 
+        const val USER_ID = "USER_ID"
+        const val CHART_MODE = "CHART_MODE"
     }
 }
