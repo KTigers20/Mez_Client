@@ -11,7 +11,7 @@ import com.ktigers20.mez.databinding.ActivityLoginBinding
 import com.ktigers20.mez.domain.globalconst.Consts
 import com.ktigers20.mez.domain.utils.toastShort
 import com.ktigers20.mez.feature.tab.TabActivity
-import com.ktigers20.mez.singleton.UserInfo
+
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.combineLatest
@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     @SuppressLint("CheckResult")
     private fun initView() {
-        presenter = LoginPresenter(this, get())
+        presenter = LoginPresenter(this, get(), get())
         binding.etUserId.doOnTextChanged { text, _, _, _ ->
             userIdBehaviorSubject.onNext(
                 text.toString()
@@ -63,11 +63,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun navigateToMainPage(token: String) {
-        startActivity(Intent(this, TabActivity::class.java).apply {
-            putExtra(Consts.ACCESS_TOKEN, token)
-            putExtra(Consts.USER_ID, binding.etUserId.toString())
-        })
-        UserInfo.userId = binding.etUserId.text.toString()
+        startActivity(Intent(this, TabActivity::class.java))
         finish()
     }
 

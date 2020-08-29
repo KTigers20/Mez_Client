@@ -1,24 +1,20 @@
 package com.ktigers20.mez.feature.settings
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.ktigers20.mez.R
-import com.ktigers20.mez.databinding.FragmentSearchBinding
 import com.ktigers20.mez.databinding.FragmentSettingBinding
 import com.ktigers20.mez.domain.globalconst.Consts
-import com.ktigers20.mez.domain.koin.modules.sharedPrefModule
 import com.ktigers20.mez.domain.koin.repositoryImpl.SharedPrefRepositoryImpl
-import com.ktigers20.mez.domain.sharedpref.SharedPreferenceHelper
-import com.ktigers20.mez.feature.search.SearchFragment
-import com.ktigers20.mez.feature.search.SearchPresenter
+import com.ktigers20.mez.feature.login.LoginActivity
 import com.ktigers20.mez.singleton.MainViewMode
-import com.ktigers20.mez.userInfo.MainDashBoardMode
 
 
 class SettingFragment : Fragment(), SettingContract.View {
@@ -51,8 +47,8 @@ class SettingFragment : Fragment(), SettingContract.View {
     }
 
     private fun initView() {
-        sharedPrefRepositoryImpl =  SharedPrefRepositoryImpl(requireContext())
-        if(sharedPrefRepositoryImpl.getPrefsStringValue(Consts.CHART_MODE) == "MY") {
+        sharedPrefRepositoryImpl = SharedPrefRepositoryImpl(requireContext())
+        if (sharedPrefRepositoryImpl.getPrefsStringValue(Consts.CHART_MODE) == "MY") {
             settingsBinding.changeableBtn.performClick()
         } else {
             settingsBinding.unchangeableBtn.performClick()
@@ -108,9 +104,8 @@ class SettingFragment : Fragment(), SettingContract.View {
                         R.color.grey4
                     )
                 )
-
                 MainViewMode.mode = "ALL"
-                sharedPrefRepositoryImpl.writePrefs(Consts.CHART_MODE , "ALL")
+                sharedPrefRepositoryImpl.writePrefs(Consts.CHART_MODE, "ALL")
 
             } else {
                 buttonView.background = ContextCompat.getDrawable(
@@ -122,4 +117,17 @@ class SettingFragment : Fragment(), SettingContract.View {
         })
 
     }
+
+    fun logout(v: View) {
+        sharedPrefRepositoryImpl.apply {
+            writePrefs(Consts.AUTO_LOGIN, false)
+            writePrefs(Consts.ACCESS_TOKEN, "")
+            writePrefs(Consts.USER_ID, "")
+            writePrefs(Consts.CHART_MODE,"MY")
+        }
+        val intent = Intent(context, LoginActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        requireContext().startActivity(intent)
+    }
+
 }

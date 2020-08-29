@@ -12,5 +12,5 @@ val useCaseModule = module {
 
     factory { GetMainChartUseCase(get()) }
 
-    factory { GetAccessTokenUseCase(get()) }
+    factory { GetAccessTokenUseCase(get(), get()) }
 }

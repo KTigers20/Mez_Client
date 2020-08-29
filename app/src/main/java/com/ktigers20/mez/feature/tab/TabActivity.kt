@@ -37,7 +37,6 @@ class TabActivity : AppCompatActivity(), TabContract.View {
     }
 
     private fun initView() {
-        UserInfo.myUId = intent.getStringExtra(Consts.USER_ID)
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_container, MainFragment.newInstance()).commit()
     }
