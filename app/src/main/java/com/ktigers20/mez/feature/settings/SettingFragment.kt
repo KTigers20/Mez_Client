@@ -2,23 +2,17 @@ package com.ktigers20.mez.feature.settings
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.ktigers20.mez.R
-import com.ktigers20.mez.databinding.FragmentSearchBinding
 import com.ktigers20.mez.databinding.FragmentSettingBinding
 import com.ktigers20.mez.domain.globalconst.Consts
-import com.ktigers20.mez.domain.koin.modules.sharedPrefModule
 import com.ktigers20.mez.domain.koin.repositoryImpl.SharedPrefRepositoryImpl
-import com.ktigers20.mez.domain.sharedpref.SharedPreferenceHelper
-import com.ktigers20.mez.feature.search.SearchFragment
-import com.ktigers20.mez.feature.search.SearchPresenter
 import com.ktigers20.mez.singleton.MainViewMode
-import com.ktigers20.mez.userInfo.MainDashBoardMode
 
 
 class SettingFragment : Fragment(), SettingContract.View {
