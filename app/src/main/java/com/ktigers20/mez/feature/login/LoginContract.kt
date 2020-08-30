@@ -1,11 +1,8 @@
 package com.ktigers20.mez.feature.login
 
-import com.ktigers20.mez.data.response.GetAllChartResponse
-import com.ktigers20.mez.data.response.GetMyChartResponse
-
 interface LoginContract {
     interface View {
-        fun navigateToMainPage(token: String)
+        fun navigateToMainPage()
 
         fun toastError()
 

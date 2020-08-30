@@ -8,7 +8,6 @@ import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import com.ktigers20.mez.R
 import com.ktigers20.mez.databinding.ActivityLoginBinding
-import com.ktigers20.mez.domain.globalconst.Consts
 import com.ktigers20.mez.domain.utils.toastShort
 import com.ktigers20.mez.feature.tab.TabActivity
 
@@ -62,7 +61,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     }
 
-    override fun navigateToMainPage(token: String) {
+    override fun navigateToMainPage() {
+        this.toastShort("로그인 성공!")
         startActivity(Intent(this, TabActivity::class.java))
         finish()
     }
